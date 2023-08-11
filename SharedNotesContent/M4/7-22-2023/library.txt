@@ -1,0 +1,201 @@
+import java.util.*;
+
+
+interface LibraryItem {
+    String getItemId();
+    String getTitle();
+}
+
+class Book implements LibraryItem {
+    private String itemId;
+    private String title;
+
+    public Book(String itemId, String title) {
+        this.itemId = itemId;
+        this.title = title;
+    }
+
+    
+    public String getItemId() {
+        return itemId;
+    }
+
+    
+    public String getTitle() {
+        return title;
+    }
+}
+
+interface User {
+    String getUserId();
+    String getName();
+}
+
+class Student implements User {
+    private String userId;
+    private String name;
+
+    public Student(String userId, String name) {
+        this.userId = userId;
+        this.name = name;
+    }
+
+    
+    public String getUserId() {
+        return userId;
+    }
+
+    
+    public String getName() {
+        return name;
+    }
+}
+
+class Teacher implements User {
+    private String userId;
+    private String name;
+
+    public Teacher(String userId, String name) {
+        this.userId = userId;
+        this.name = name;
+    }
+
+    
+    public String getUserId() {
+        return userId;
+    }
+
+    
+    public String getName() {
+        return name;
+    }
+}
+
+class BorrowedBook {
+    private LibraryItem item;
+    private User user;
+
+    public BorrowedBook(LibraryItem item, User user) {
+        this.item = item;
+        this.user = user;
+    }
+
+    public LibraryItem getItem() {
+        return item;
+    }
+
+    public User getUser() {
+        return user;
+    }
+}
+
+class Library {
+    private List<LibraryItem> items;
+    private List<User> users;
+    private List<BorrowedBook> borrowedBooks;
+
+    public Library() {
+        this.items = new ArrayList<>();
+        this.users = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<>();
+    }
+
+    public void addItem(LibraryItem item) {
+        items.add(item);
+    }
+
+    public void removeItem(LibraryItem item) {
+        items.remove(item);
+    }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
+    }
+
+    public boolean borrowItem(LibraryItem item, User user) {
+        if (items.contains(item) && users.contains(user)) {
+            BorrowedBook borrowedBook = new BorrowedBook(item, user);
+            borrowedBooks.add(borrowedBook);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean returnItem(LibraryItem item, User user) {
+        BorrowedBook borrowedBook = new BorrowedBook(item, user);
+        if (borrowedBooks.contains(borrowedBook)) {
+            borrowedBooks.remove(borrowedBook);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    
+    public List<LibraryItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<LibraryItem> items) {
+        this.items = items;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<BorrowedBook> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+    public void setBorrowedBooks(List<BorrowedBook> borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Library library = new Library();
+
+        Book book1 = new Book("123", "Java Programming");
+        Book book2 = new Book("456", "Python Basics");
+        library.addItem(book1);
+        library.addItem(book2);
+
+        User user1 = new Student("1", "shiva");
+        User user2 = new Teacher("2", "Rohit");
+        library.addUser(user1);
+        library.addUser(user2);
+
+        System.out.println("Available Library Items:");
+        for (LibraryItem item : library.getItems()) {
+            System.out.println("Item ID: " + item.getItemId() + ", Title: " + item.getTitle());
+        }
+        System.out.println();
+
+        System.out.println("Registered Users:");
+        for (User user : library.getUsers()) {
+            System.out.println("User ID: " + user.getUserId() + ", Name: " + user.getName());
+        }
+        System.out.println();
+
+        library.borrowItem(book1, user1);
+        library.borrowItem(book2, user2);
+        library.returnItem(book1, user1);
+
+        System.out.println("Borrowed Books:");
+        for (BorrowedBook borrowedBook : library.getBorrowedBooks()) {
+            System.out.println("Item ID: " + borrowedBook.getItem().getItemId() + ", Title: " + borrowedBook.getItem().getTitle() + ", Borrower ID: " + borrowedBook.getUser().getUserId());
+        }
+        
+    }
+}
