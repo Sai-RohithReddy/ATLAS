@@ -1,0 +1,311 @@
+blogs> db.posts.find({"id" : {$in : [1, 2, 3]}},{"_id" : 0})
+[
+  {
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    id: 3,
+    content: 'Learnign MongoDB is fun',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    id: 2,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({"id" : {$nin : [1, 2, 3]}},{"_id" : 0})
+[  
+  {
+    id: 4,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    id: 6,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs>
+
+
+blogs> db.posts.find({"id" : 5, "content" : "Welcome to MongoDB"})
+[  
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({$and :[{"id" : 5}, {"content" : "Welcome to MongoDB"}]})
+[  
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({$or :[{"id" : 6}, {"content" : "Hello world!!"}]})
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7639f91e1494b470b4815"),
+    id: 6,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({$nor :[{"id" : 6}, {"content" : "Hello world!!"}]})
+[  
+  {
+    _id: ObjectId("64d759db91e1494b470b480f"),
+    id: 3,
+    content: 'Learnign MongoDB is fun',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7604291e1494b470b4810"),
+    id: 2,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7608591e1494b470b4811"),
+    id: 4,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs>
+
+blogs> db.posts.find({"id" : {$lt : 4}})
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d759db91e1494b470b480f"),
+    id: 3,
+    content: 'Learnign MongoDB is fun',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7604291e1494b470b4810"),
+    id: 2,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({"id" :{$not :  {$lt : 4}}})
+[  
+  {
+    _id: ObjectId("64d7608591e1494b470b4811"),
+    id: 4,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7639f91e1494b470b4815"),
+    id: 6,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs>
+
+blogs> db.posts.find()
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d759db91e1494b470b480f"),
+    id: 3,
+    content: 'Learnign MongoDB is fun',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7604291e1494b470b4810"),
+    id: 2,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7608591e1494b470b4811"),
+    id: 4,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7639f91e1494b470b4815"),
+    id: 6,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  { _id: ObjectId("64e0ad7eb7b9196995c682e5"), content: 'zzzz' }
+]
+blogs> db.posts.find({"id" : {$exists : true}})
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d759db91e1494b470b480f"),
+    id: 3,
+    content: 'Learnign MongoDB is fun',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7604291e1494b470b4810"),
+    id: 2,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7608591e1494b470b4811"),
+    id: 4,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7639f91e1494b470b4815"),
+    id: 6,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({"id" : {$exists : false}})
+[ { _id: ObjectId("64e0ad7eb7b9196995c682e5"), content: 'zzzz' } ]
+blogs>
+
+blogs> db.posts.find({"id" : {$type : "int"}})
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d759db91e1494b470b480f"),
+    id: 3,
+    content: 'Learnign MongoDB is fun',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7604291e1494b470b4810"),
+    id: 2,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7608591e1494b470b4811"),
+    id: 4,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7639f91e1494b470b4815"),
+    id: 6,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs>
+
+blogs> db.posts.find({"id" : {$type : "string"}})
+[ { _id: ObjectId("64e0b410b7b9196995c682e6"), id: '123' } ]
+blogs>
+

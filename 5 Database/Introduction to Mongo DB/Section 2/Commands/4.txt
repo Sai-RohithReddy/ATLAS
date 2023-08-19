@@ -1,0 +1,165 @@
+blogs> db.posts.find({"author" : {$regex : "^[A-Z]+"}})
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d759db91e1494b470b480f"),
+    id: 3,
+    content: 'Learnign MongoDB is fun',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7604291e1494b470b4810"),
+    id: 2,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7608591e1494b470b4811"),
+    id: 4,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7639f91e1494b470b4815"),
+    id: 6,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({"content" : {$regex : "!$"}})
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs>
+
+blogs> db.posts.find({$text : {$searach : "hello"}})
+MongoServerError: Missing expected field "$search
+
+blogs> db.posts.find({$text : {$search : "hello", $caseSensitive : false}})
+MongoServerError: text index required for $text query
+
+blogs> db.posts.createIndex({content : "text"})
+content_text
+
+blogs> db.posts.find({$text : {$search : "hello"}})
+[  
+  {
+    _id: ObjectId("64e0d3ef042ba6838644cfa8"),
+    content: 'hello world!!'
+  },
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({$text : {$search : "hello", $caseSensitive : true}})
+[  
+  {
+    _id: ObjectId("64e0d3ef042ba6838644cfa8"),
+    content: 'hello world!!'
+  }
+]
+blogs>
+
+blogs> db.posts.find({"content" : {$regex : "^h", $options : "i"}})
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64e0d3ef042ba6838644cfa8"),
+    content: 'hello world!!'
+  }
+]
+blogs> db.posts.find({"content" : {$regex : "^h"}})
+[
+  {
+    _id: ObjectId("64e0d3ef042ba6838644cfa8"),
+    content: 'hello world!!'
+  }
+]
+blogs>
+
+Example of $mod operator
+db.articles.find({"views" : {$mod : [10, 0]}});
+db.articles.find({"views" : {$mod : [10, 0]}, $comment : "this is to get the reminder of views"});
+
+blogs> db.posts.find({"id" : {$mod : [2, 0]}})
+[  
+  {
+    _id: ObjectId("64d7604291e1494b470b4810"),
+    id: 2,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7608591e1494b470b4811"),
+    id: 4,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7639f91e1494b470b4815"),
+    id: 6,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs> db.posts.find({"id" : {$mod : [2, 1]}})
+[  
+  {
+    _id: ObjectId("64d7583591e1494b470b480d"),
+    id: 1,
+    content: 'Hello world!!',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d759db91e1494b470b480f"),
+    id: 3,
+    content: 'Learnign MongoDB is fun',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("64d7609491e1494b470b4812"),
+    id: 5,
+    content: 'Welcome to MongoDB',
+    author: 'Rohith Reddy',
+    posted_at: ISODate("2023-12-08T00:00:00.000Z")
+  }
+]
+blogs>
