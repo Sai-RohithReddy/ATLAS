@@ -1,0 +1,33 @@
+EmployeeDB> db.Employee.find({},{"EmployeeName" : 1})
+[
+  { _id: ObjectId("64e05692a62939a7f56eabab"), EmployeeName: 'Martin' },
+  { _id: ObjectId("64e08937a62939a7f56eabac"), EmployeeName: 'Rohith' },
+  { _id: ObjectId("64e08948a62939a7f56eabad"), EmployeeName: 'David' },
+  { _id: ObjectId("64e0895ba62939a7f56eabae"), EmployeeName: 'Shaik' },
+  { _id: ObjectId("64e0896ca62939a7f56eabaf"), EmployeeName: 'Kiran' }
+]
+EmployeeDB> db.Employee.find({},{"EmployeeName" : 1, "_id" : 0})
+[
+  { EmployeeName: 'Martin' },
+  { EmployeeName: 'Rohith' },
+  { EmployeeName: 'David' },
+  { EmployeeName: 'Shaik' },
+  { EmployeeName: 'Kiran' }
+]
+EmployeeDB> db.Employee.find({"Employeeid" : {$gt : 3}},{"EmployeeName" : 1, "_id" : 0})
+[ { EmployeeName: 'Shaik' }, { EmployeeName: 'Kiran' } ]
+EmployeeDB> db.Employee.find({"Employeeid" : {$gte : 3}},{"EmployeeName" : 1, "_id" : 0})
+[
+  { EmployeeName: 'David' },
+  { EmployeeName: 'Shaik' },
+  { EmployeeName: 'Kiran' }
+]
+EmployeeDB> db.Employee.find({"Employeeid" : {$lte : 3}},{"EmployeeName" : 1, "_id" : 0})
+[
+  { EmployeeName: 'Martin' },
+  { EmployeeName: 'Rohith' },
+  { EmployeeName: 'David' }
+]
+EmployeeDB> db.Employee.find({"Employeeid" : {$eq : 3}},{"_id" : 0})
+[ { Employeeid: 3, EmployeeName: 'David' } ]
+
