@@ -1,0 +1,54 @@
+EmployeeDB> db.Employee.countDocuments()
+4
+EmployeeDB> db.Employee.find().count();
+4
+EmployeeDB> db.Employee.find().limit(2);
+[  
+  {
+    _id: ObjectId("64e08937a62939a7f56eabac"),
+    Employeeid: 2,
+    EmployeeName: 'Rohith Reddy'
+  },
+  {
+    _id: ObjectId("64e08948a62939a7f56eabad"),
+    Employeeid: 3,
+    EmployeeName: 'David'
+  }
+]
+EmployeeDB> db.Employee.find().sort({"Employeeid" : -1});
+[  
+  {
+    _id: ObjectId("64e0896ca62939a7f56eabaf"),
+    Employeeid: 5,
+    EmployeeName: 'Kiran'
+  },
+  {
+    _id: ObjectId("64e0895ba62939a7f56eabae"),
+    Employeeid: 4,
+    EmployeeName: 'Shaik'
+  },
+  {
+    _id: ObjectId("64e08948a62939a7f56eabad"),
+    Employeeid: 3,
+    EmployeeName: 'David'
+  },
+  {
+    _id: ObjectId("64e08937a62939a7f56eabac"),
+    Employeeid: 2,
+    EmployeeName: 'Rohith Reddy'
+  }
+]
+EmployeeDB> db.Employee.find().sort({"Employeeid" : 1}).limit(2);
+[  
+  {
+    _id: ObjectId("64e749d79cc4cb08352cd7d5"),
+    Employeeid: 1,
+    EmployeeName: 'Messi'
+  },
+  {
+    _id: ObjectId("64e08937a62939a7f56eabac"),
+    Employeeid: 2,
+    EmployeeName: 'Rohith Reddy'
+  }
+]
+EmployeeDB>

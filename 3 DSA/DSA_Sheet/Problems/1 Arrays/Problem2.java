@@ -5,11 +5,14 @@ class Pair {
 
 public class Problem2 {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5};
-        findMaxAndMin(arr);
+        int[] arr = { 1, 2, 3, 4, 5 };
+        Pair minMax = findMaxAndMin(arr);
+        System.out.println("Minimum valie is: " + minMax.min);
+        System.out.println("Maximun value is: " + minMax.max);
     }
-    public static void findMaxAndMin(int[] arr) {
-        
+
+    public static Pair findMaxAndMin(int[] arr) {
+
         Pair pair = new Pair();
 
         for (int i = 0; i < arr.length; i++) {
@@ -20,6 +23,6 @@ public class Problem2 {
                 pair.min = arr[i];
             }
         }
-        
+        return pair;
     }
 }

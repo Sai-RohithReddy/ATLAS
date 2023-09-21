@@ -1,0 +1,82 @@
+EmployeeDB> db.Employee.find({"EmployeeName" : {$in : ["Kiran", "Shaik"]}},{_id : 0})
+[
+  { Employeeid: 4, EmployeeName: 'Shaik' },
+  { Employeeid: 5, EmployeeName: 'Kiran' }
+]
+EmployeeDB>
+
+EmployeeDB> db.Employee.update({"Employeeid" : 2}, {$set : {"EmployeeName" : "Rohith Reddy"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+EmployeeDB> db.Employee.find({"Employeeid" : 2})
+[  
+  {
+    _id: ObjectId("64e08937a62939a7f56eabac"),
+    Employeeid: 2,
+    EmployeeName: 'Rohith Reddy'
+  }
+]
+EmployeeDB>
+
+EmployeeDB> db.Employee.update({"Employeeid" : 8}, {$set : {"EmployeeName" : "Messi"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+EmployeeDB> db.Employee.find({"Employeeid" : 8})
+
+EmployeeDB> db.Employee.update({"Employeeid" : 8}, {$set : {"EmployeeName" : "Messi"}}, {"upsert" : true});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e73205d99ad41c2dd553f7"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+EmployeeDB> db.Employee.find({"Employeeid" : 8})
+[  
+  {
+    _id: ObjectId("64e73205d99ad41c2dd553f7"),
+    Employeeid: 8,
+    EmployeeName: 'Messi'
+  }
+]
+EmployeeDB
+
+EmployeeDB> db.Employee.replaceOne({"Employeeid" : 8}, {"Employeeid" : 6, "EmployeeName" : "CR7"}, {"upsert" : true});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+EmployeeDB> db.Employee.find({"Employeeid" : 6})
+[  
+  {
+    _id: ObjectId("64e73205d99ad41c2dd553f7"),
+    Employeeid: 6,
+    EmployeeName: 'CR7'
+  }
+]
+EmployeeDB> db.Employee.find({"Employeeid" : 8})
+
+EmployeeDB>
+
+EmployeeDB> db.Employee.remove({"Employeeid" : 6})
+{ acknowledged: true, deletedCount: 1 }
+EmployeeDB> db.Employee.find({"Employeeid" : 6})
+
+EmployeeDB> db.Employee.deleteOne({"Employeeid" : 1})
+{ acknowledged: true, deletedCount: 1 }
+EmployeeDB> db.Employee.find({"Employeeid" : 1})
+
+try{db.characters.bulkWrite([{insertOne({"char" : "HYD", "class" : "zzz", "lvl" : 7})}, {updateOne : {"lvl" : 4}, {$set : {"class" : "Classic"}}}])}catch(e){print e;}
