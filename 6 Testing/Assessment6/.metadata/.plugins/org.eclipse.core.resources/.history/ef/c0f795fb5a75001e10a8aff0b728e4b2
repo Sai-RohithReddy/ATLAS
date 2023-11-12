@@ -1,0 +1,32 @@
+package com.abc;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class TransactionTest {
+	
+
+
+	@Test
+	public void testDeposit() {
+		Transaction t = new Transaction();
+		t.deposit(100);
+		assertEquals(200, t.getBalance());
+	}
+
+	@Test
+	public void testWithdra() {
+		Transaction t = new Transaction();
+		t.withdra(50);
+		assertEquals(150, t.getBalance());
+	}
+
+	@Test
+	public void testGetBalance() {
+		Transaction t = new Transaction();
+		assertEquals(100, t.getBalance());
+	}
+
+}

@@ -1,0 +1,29 @@
+package com.abc;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class TransactionTest {
+	
+
+
+//	@Test
+//	void testDeposit(int a) {
+//		t.deposit(a);
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testWithdra() {
+//		fail("Not yet implemented");
+//	}
+
+	@Test
+	public void testGetBalance() {
+		Transaction t = new Transaction();
+		assertEquals(100, t.getBalance());
+	}
+
+}

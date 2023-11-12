@@ -1,0 +1,8 @@
+2023-11-11 21:02:17 INFO  BaseClass:15 - URL is opened
+2023-11-11 21:02:17 INFO  BaseClass:18 - Entered username
+2023-11-11 21:02:17 INFO  BaseClass:20 - Entered password
+2023-11-11 21:02:18 INFO  BaseClass:26 - Login test passed
+2023-11-11 21:02:59 INFO  BaseClass:15 - URL is opened
+2023-11-11 21:02:59 INFO  BaseClass:18 - Entered username
+2023-11-11 21:02:59 INFO  BaseClass:20 - Entered password
+2023-11-11 21:03:02 INFO  BaseClass:26 - Login test passed

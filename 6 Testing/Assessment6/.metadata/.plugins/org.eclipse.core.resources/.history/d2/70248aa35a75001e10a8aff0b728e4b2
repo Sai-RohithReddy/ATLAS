@@ -1,0 +1,14 @@
+package com.abc;
+
+public class Transaction {
+	int amount = 100;
+	public void deposit(int a) {
+		amount += a;
+	}
+	public void withdra(int a) {
+		amount -= a;
+	}
+	public int getBalance() {
+		return amount;
+	}
+}

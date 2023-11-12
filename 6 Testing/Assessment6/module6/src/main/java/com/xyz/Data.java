@@ -1,0 +1,30 @@
+package com.xyz;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Data {
+
+	public static void main(String[] args) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb","root","root");
+		Statement stmt = con.createStatement();
+		String insertQuerry = "insert into xyz values(4, \"yyy\", \"general\", \"admitted\")";
+		String selecQuerry = "select * from xyz";
+		
+		stmt.execute(insertQuerry);
+		ResultSet rs = stmt.executeQuery(selecQuerry);
+		while(rs.next()) {
+			int id = rs.getInt("pid");
+			String name = rs.getString("pname"); 
+			String issue = rs.getString("hissue"); 
+			String status = rs.getString("status"); 
+			System.out.println(id + " " + name + " " + issue + " " + status);
+		}
+		con.close();
+		
+	}
+}
