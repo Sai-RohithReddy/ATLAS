@@ -1,0 +1,47 @@
+What did you learn in Atlas?
+DSA - What is DSA?
+What is time complexity? and what is space complexity?
+
+Coding question :- a) A and B two variables, How will you swap value without using third variable?
+
+                   b) What is TC? what is SC? Reason? 
+
+Is Java OOP programing language? What does it mean? Use the word for which you know the meaning?
+ OS - basic structure and 7 Layer questions?
+Type of sortings? Which is better sorting? 
+what are Amazon Leadership Principles? which is your favourite? 
+
+_________________________________________________________
+coding question:
+1) Find occurance of first String in second String
+2) Find the most frequent digit in given Array
+3) Integer array of size n : 1, 2, 3 ,4, 5, 5, 6, 7 
+
+you have to find the  number which was repeated..
+ for e.g. Input = 2,4,3,5,5,1;
+Output = 5;
+
+
+leadership principles questions:
+Tell me about a time where you required some information but you did not get a response from the source where you are reaching to, What did you do in such situation? 
+ii) Tell me about a time where you did not have enough information/idea about how to go forward on the task you are performing, how did you get the information and completed the task? 
+
+______________
+
+coding questions:
+Coding questions:
+1. Valid Parentheses
+
+Leadership principles:
+1. Tell me a situation where you intentionally learned a skill which is not required for the role or company
+2. Tell me a situation where you couldn't complete a task and how you dealt with it. How did you inform your manage
+
+___________________________
+Coding questions: linked list cycle detection. 
+Reverse the words in a string
+
+Time and space complexities were asked and also better approaches. 
+
+
+
+
